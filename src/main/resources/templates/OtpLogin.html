@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login with OTP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #e6efec; /* A lighter shade derived from #3b5d50 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-box {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 350px;
+            max-width: 100%;
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #3b5d50; /* Primary color for the heading */
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #3b5d50; /* Primary color for the labels */
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b0c6bf; /* Border color derived from #3b5d50 */
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+        }
+
+        .input-group input:focus,
+        .input-group input:hover {
+            border-color: #3b5d50; /* Focus and hover color */
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(59, 93, 80, 0.4); /* Stronger shadow on hover */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3b5d50; /* Primary color for the button */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scale on hover */
+        }
+
+        button:hover {
+            background-color: #324e44; /* Darker shade for hover effect */
+            transform: scale(1.05); /* Slightly enlarge the button on hover */
+        }
+
+        /* Character Animation */
+        .character {
+            position: absolute;
+            top: 20%;
+            right: 20%;
+            width: 100px;
+            height: 100px;
+            background-color: #3b5d50; /* Primary color for character */
+            border-radius: 50%;
+            animation: float 5s ease-in-out infinite;
+            z-index: 1;
+            transition: transform 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .character:hover {
+            transform: scale(1.1); /* Enlarge the character slightly on hover */
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .character::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: #324e44; /* Slightly darker shade */
+            border-radius: 50%;
+            top: -30px;
+            left: 20px;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .character::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #e6efec; /* Matching the body background */
+            border-radius: 50%;
+            top: 20px;
+            left: 30px;
+            animation: float 5s ease-in-out infinite;
+            animation-delay: -2.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="form-box">
+            <h2>Login with OTP</h2>
+            <form th:action="@{/otpSend}" method="POST" >
+                <div class="input-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="text" id="mobile" name="phoneNumber"  placeholder="Enter your mobile number" required>
+                </div>
+                <button type="submit">Get OTP</button>
+            </form>
+        </div>
+        <div class="character"></div>
+    </div>
+</body>
+</html>

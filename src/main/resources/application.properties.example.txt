@@ -1,0 +1,3 @@
+# Application Properties Example
+twilio.accountSid=your-twilio-sid-placeholder
+twilio.authToken=your-twilio-auth-token-placeholders

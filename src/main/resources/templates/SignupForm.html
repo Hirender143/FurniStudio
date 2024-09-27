@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>SignUp Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/StyleSignup.css" />
+</head>
+<body>
+	<div class="container">
+		<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" alt="Pokémon" class="pokemon-image" />
+		<h1 class="form-title">SignUp Form</h1>
+
+		<form th:action="@{/savesignup}" th:object="${user}" method="post">
+			<input type="hidden" th:field="*{id}" />
+
+			<div class="main-user-info">
+				<div class="user-input-box">
+					<label for="fullName">Full Name:</label>
+					<input type="text" id="fullName" placeholder="Enter Full name" th:field="*{FullName}" />
+					<label th:if="${#fields.hasErrors('FullName')}" th:errors="*{FullName}"></label>
+				</div>
+
+				<div class="user-input-box">
+					<label for="username">Username</label>
+					<input type="text" th:field="*{username}" id="username" placeholder="Enter Username" />
+				</div>
+				<div class="user-input-box">
+					<label for="email">Email</label>
+					<input type="email" th:field="*{email}" id="email" placeholder="Enter Email" />
+					<label th:if="${#fields.hasErrors('Email')}" th:errors="*{Email}" style="color: red; font-size: 0.999em;"></label>
+				</div>
+
+				<div class="user-input-box">
+					<label for="phoneNumber">Phone Number</label>
+					<input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Enter Phone Number" />
+				</div>
+				<div class="user-input-box">
+					<label for="password">Password</label>
+					<input type="password" th:field="*{password}" id="password" placeholder="Enter Password" />
+				</div>
+			</div>
+			<div class="gender-details-box">
+				<span class="gender-title">Gender</span>
+				<div class="gender-category">
+					<input type="radio" th:field="*{gender}" id="male" value="Male" />
+					<label for="male">Male</label>
+					<input type="radio" th:field="*{gender}" id="female" value="Female" />
+					<label for="female">Female</label>
+					<input type="radio" th:field="*{gender}" id="other" value="Other" />
+					<label for="other">Other</label>
+				</div>
+			</div>
+			<div class="form-submit-btn">
+				<input type="submit" value="Register" />
+			</div>
+
+			<!-- Add Login link here -->
+			<div class="login-link">
+				<p>Already have an account? <a th:href="@{Login}">Login</a></p>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

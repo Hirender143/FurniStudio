@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark"
+	aria-label="Furni navigation bar" th:fragment="header">
+	<div class="container">
+		<a class="navbar-brand" th:href="@{index}">Furni<span>.</span></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarsFurni" aria-controls="navbarsFurni"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarsFurni">
+			<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+				<li class="nav-item active"><a class="nav-link" th:href="@{index}">Home</a></li>
+				<li><a class="nav-link" th:href="@{services}">Services</a></li>
+				<li><a class="nav-link" th:href="@{shop}">Shop</a></li>
+				<li><a class="nav-link" th:href="@{blog}">Blog</a></li>
+				<li><a class="nav-link" th:href="@{about}">About us</a></li>
+				<li><a class="nav-link" th:href="@{contact}">Contact us</a></li>
+				
+				<li th:if="${session.isAdmin}"><a class="nav-link" th:href="@{/addProduct}">Add Product</a></li>
+
+			</ul>
+			<div class="d-flex align-items-center ms-5">
+				<!-- User Dropdown -->
+				<div class="nav-item dropdown me-3 d-flex align-items-center">
+					<a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+					   role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="images/user.svg" alt="User Icon" class="me-2">
+						<div>
+							<div th:if="${session.name} != null">
+								<span th:text="${session.name}"></span>
+							</div>
+						</div>
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="userDropdown">
+						<!-- Show Profile and Logout if logged in -->
+						<li th:if="${session.name} != null"><a class="dropdown-item" th:href="@{profile}">Profile</a></li>
+						<li th:if="${session.isAdmin}"><a class="dropdown-item" th:href="@{Logout}">Sales Page</a></li>
+						<li th:if="${session.name} != null"><a class="dropdown-item" th:href="@{Logout}">Logout</a></li>
+						
+
+						<!-- Show Login and Sign Up if not logged in -->
+						<li th:unless="${session.name} != null"><a class="dropdown-item" th:href="@{Login}">Login</a></li>
+						<li th:unless="${session.name} != null"><a class="dropdown-item" th:href="@{SignupForm}">Sign Up</a></li>
+					</ul>
+				</div>
+				<!-- Cart Icon -->
+				<div class="nav-item d-flex align-items-center">
+					<a class="nav-link" th:href="@{cart}">
+						<img src="images/cart.svg" alt="Cart Icon" class="ms-2" style="margin-top: 4px;">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+</html>
