@@ -6,4 +6,7 @@ import Com.Furni.entity.Cart;
 
 public interface cartRepository extends JpaRepository<Cart, Long> {
 
+	public Cart findByUserId(Long id);
+
 }
+

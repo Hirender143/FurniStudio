@@ -18,37 +18,31 @@ public class furniService {
 	@Autowired
 	private SignUpRepository signUpRepository;
 
-	//THIS IS FOR TO SAVE CONTACTUS
+	// THIS IS FOR TO SAVE CONTACTUS
 	public void saveContactus(contactus contactus) {
-          furniRepository.save(contactus);
+		furniRepository.save(contactus);
 	}
 
-	//THIS IS FOR SAVE SIGNUPFORM
+	// THIS IS FOR SAVE SIGNUPFORM
 	public void save(User user) {
 		signUpRepository.save(user);
 	}
-	
-	
-	//THIS IS FOR LOGIN USING USERNAME & PASSWORD
+
+	// THIS IS FOR LOGIN USING USERNAME & PASSWORD
 	public User findByUsername(String username) {
-		
+
 		return signUpRepository.findByUsername(username);
 	}
-	
-	//THIS IS FOR LOGIN THROUGH PHONE NUMBER-OTP
+
+	// THIS IS FOR LOGIN THROUGH PHONE NUMBER-OTP
 	public User findByphoneNumber(String phoneNumber) {
 		return signUpRepository.findByphoneNumber(phoneNumber);
 	}
-	
-//	public boolean isAdmin(String username) {
-//        Integer adminStatus = signUpRepository.findAdminStatusByUsername(username);
-//        return adminStatus != null && adminStatus == 1;
-//    }
-	
+
 	public boolean isAdmin(String username) {
-	       Boolean isAdmin = signUpRepository.findAdminStatusByUsername(username);
-	       return isAdmin != null && isAdmin;
-	         //return isAdmin;
+		Boolean isAdmin = signUpRepository.findAdminStatusByUsername(username);
+		return isAdmin != null && isAdmin;
+		// return isAdmin;
 	}
 
 }

@@ -2,6 +2,7 @@ package Com.Furni.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 
-	// Create a new product
+	// Create a new product- THIS IS FOR TO JUST SAVE PRODUCT IN THE DATABASE
 	public Product saveProduct(Product product) {
 		return productRepository.save(product);
 	}
@@ -30,19 +31,19 @@ public class ProductService {
 	}
 
 	// Update an existing product
-	public Product updateProduct(Long id, Product productDetails) {
-		return productRepository.findById(id)
-				.map(product -> {
-			product.setItemName(productDetails.getItemName());
-			product.setItemPrice(productDetails.getItemPrice());
-			product.setItemDescription(productDetails.getItemDescription());
-			product.setItemImage(productDetails.getItemImage());
-			return productRepository.save(product);
-		}).orElseThrow(() -> new IllegalArgumentException("Product not found with id " + id));
-	}
+//	public Product updateProduct(Long id, Product productDetails) {
+//		return productRepository.findById(id)
+//				.map(product -> {
+//			product.setItemName(productDetails.getItemName());
+//			product.setItemPrice(productDetails.getItemPrice());
+//			product.setItemDescription(productDetails.getItemDescription());
+//			product.setItemImage(productDetails.getItemImage());
+//			return productRepository.save(product);
+//		}).orElseThrow(() -> new IllegalArgumentException("Product not found with id " + id));
+//	}
 
 	// Delete a product by ID
-	public void deleteProduct(Long id) {
-		productRepository.deleteById(id);
-	}
+//	public void deleteProduct(Long id) {
+//		productRepository.deleteById(id);
+//	}
 }

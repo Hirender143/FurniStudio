@@ -1,3 +1,25 @@
 # Application Properties Example
-twilio.accountSid=your-twilio-sid-placeholder
-twilio.authToken=your-twilio-auth-token-placeholders
+twilio.accountSid=your-twilio-sid
+twilio.authToken=your-twilio-auth-token
+twilio.phoneNumber=Purchase-number-from-twilio(website)
+
+
+#DATABASE CONFIGURATION
+spring.datasource.url=Put-url
+spring.datasource.username=Put-username
+spring.datasource.password=Put-password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#JPA/HIBERNATE CONFIGURATION
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+
+#JAVA MAIL SERVICE CONFIGURATION
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=Put-mail-username
+spring.mail.password=put-mail-password
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true

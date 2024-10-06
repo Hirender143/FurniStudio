@@ -27,10 +27,8 @@ public class Product {
 	
 	
 	//Temporary for file storation
-	@Transient
+	@Transient        // THIS IS USE FOR TO GET MULTIPART WORK IN REQUEST , THIS PROPERTY DON'T INTERACT OR SAVE IN DATABASE
 	private MultipartFile imageFile;
-	
-	//private String bas64String;
 	
 
 	

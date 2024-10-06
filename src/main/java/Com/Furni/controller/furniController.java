@@ -60,8 +60,8 @@ public class furniController {
 
 	@GetMapping("/shop")
 	public String shopView(Model model) {
-		List<Product> products = productService.getAllProducts();
-		model.addAttribute("products", products);
+		List<Product> product = productService.getAllProducts();
+		model.addAttribute("products", product);
 		return "shop";
 
 	}
@@ -74,9 +74,7 @@ public class furniController {
 		if (product != null && product.getItemImage() != null) {
 			
 			
-			MediaType mediaType = (product.getItemImageType() != null) 
-                    ? MediaType.parseMediaType(product.getItemImageType()) 
-                    : detectImageType(product.getItemImage());
+			MediaType mediaType = (product.getItemImageType() != null) ? MediaType.parseMediaType(product.getItemImageType()) : detectImageType(product.getItemImage());
 			
 			ByteArrayResource byteArrayResource = new ByteArrayResource(product.getItemImage());
 			
@@ -106,11 +104,7 @@ public class furniController {
 
 	}
 
-	@GetMapping("/cart")
-	public String cartView() {
-		return "cart";
-
-	}
+	
 
 	@GetMapping("/blog")
 	public String blogView() {
@@ -160,8 +154,8 @@ public class furniController {
 	// THIS IS FOR LOGIN PAGE
 	@GetMapping("/Login")
 	public String loginView() {
+		
 		return "Login";
-
 	}
 
 	@PostMapping("/Login")
@@ -171,6 +165,7 @@ public class furniController {
 
 		if (user != null && user.getPassword().equals(password)) {
 			session.setAttribute("name", user.getUsername());
+			session.setAttribute("user", user);
 			boolean isAdmin = furniService.isAdmin(username);
 			System.out.println(isAdmin);
 			if (isAdmin) {
@@ -258,11 +253,6 @@ public class furniController {
 		}
 	}
 	
-//	public String convertByteToBase64String(byte[] data) {
-//		String base64String = "";
-//		
-//		return base64String;
-//	}
 
 	@PostMapping("saveProduct")
 	public String addProduct(@ModelAttribute Product product,
@@ -271,6 +261,8 @@ public class furniController {
 			if (!product.getImageFile().isEmpty()) {
 				product.setItemImage(product.getImageFile().getBytes());
 				product.setItemImageType(product.getImageFile().getContentType());
+				
+				System.out.println(product.getImageFile().getContentType());
 				
 			}
 			productService.saveProduct(product);
@@ -281,19 +273,5 @@ public class furniController {
 		return "redirect:/shop";
 
 	}
-//	@PostMapping("saveProduct")
-//	public String addProduct(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile imageFile,
-//			RedirectAttributes redirect) {
-//		try {
-//			if (!imageFile.isEmpty()) {
-//				product.setItemImage(imageFile.getBytes());
-//			}
-//			productService.saveProduct(product);
-//			redirect.addFlashAttribute("Success", "Product Added Successfully");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return "redirect:/shop";
-//		
-//	}
+
 }

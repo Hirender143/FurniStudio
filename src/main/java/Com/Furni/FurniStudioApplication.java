@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FurniStudioApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FurniStudioApplication.class, args);
+		SpringApplication.run(FurniStudioApplication.class, args);   //Main
 	}
 
 }

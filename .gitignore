@@ -19,6 +19,9 @@ target/
 *.iml
 *.ipr
 
+#secret
+.env
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -32,5 +35,6 @@ build/
 ### VS Code ###
 .vscode/
 
-#to save credentials
-D:\Spring software\STS WORKSPACE\FurniStudio\src\main\resources\application.properties
+# Ignore application.properties
+/src/main/resources/application.properties
+
