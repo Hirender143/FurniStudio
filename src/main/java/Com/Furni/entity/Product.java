@@ -24,20 +24,16 @@ public class Product {
 	private String itemPrice;
 
 	private String itemDescription;
-	
-	
-	//Temporary for file storation
-	@Transient        // THIS IS USE FOR TO GET MULTIPART WORK IN REQUEST , THIS PROPERTY DON'T INTERACT OR SAVE IN DATABASE
-	private MultipartFile imageFile;
-	
 
-	
-	
+	// Temporary for file storation
+	@Transient // THIS IS USE FOR TO GET MULTIPART WORK IN REQUEST , THIS PROPERTY DON'T
+				// INTERACT OR SAVE IN DATABASE
+	private MultipartFile imageFile;
 
 	@Column(name = "item_image", columnDefinition = "LONGBLOB")
 	@Lob
 	private byte[] itemImage;
-	
+
 	private String itemImageType;
 
 	public Long getId() {
@@ -55,8 +51,6 @@ public class Product {
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
 	}
-
-	
 
 	public String getItemPrice() {
 		return itemPrice;
@@ -97,8 +91,5 @@ public class Product {
 	public void setItemImageType(String itemImageType) {
 		this.itemImageType = itemImageType;
 	}
-	
-	
-	
 
 }

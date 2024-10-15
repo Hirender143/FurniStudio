@@ -9,6 +9,7 @@ public class FurniStudioApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FurniStudioApplication.class, args);   //Main
+		
 	}
 
 }

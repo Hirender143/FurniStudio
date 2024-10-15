@@ -166,6 +166,7 @@ public class furniController {
 		if (user != null && user.getPassword().equals(password)) {
 			session.setAttribute("name", user.getUsername());
 			session.setAttribute("user", user);
+			session.setAttribute("id", user.getId());
 			boolean isAdmin = furniService.isAdmin(username);
 			System.out.println(isAdmin);
 			if (isAdmin) {

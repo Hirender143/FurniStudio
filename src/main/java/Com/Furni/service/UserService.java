@@ -1,7 +1,5 @@
 package Com.Furni.service;
 
-
-
 import org.springframework.stereotype.Service;
 
 import Com.Furni.entity.User;
@@ -10,12 +8,9 @@ import jakarta.servlet.http.HttpSession;
 
 @Service
 public class UserService {
-	
-	
+
 	private final UserRepository userRepository;
 	private final HttpSession httpSession;
-
-	
 
 	public UserService(UserRepository userRepository, HttpSession httpSession) {
 		super();
@@ -23,18 +18,14 @@ public class UserService {
 		this.httpSession = httpSession;
 	}
 
-
-
 	public User findCurrentUser() {
 		User user = (User) httpSession.getAttribute("user");
 		return user;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public User findById(Long id) {
+		return userRepository.findById(id).orElseThrow();
+
+	}
 
 }
