@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import Com.Furni.entity.Product;
 import Com.Furni.entity.User;
+import Com.Furni.entity.Vendor;
 import Com.Furni.entity.contactus;
 import Com.Furni.service.ProductService;
 import Com.Furni.service.TwilioService;
@@ -51,6 +52,22 @@ public class furniController {
 		return "index";
 
 	}
+	
+	@GetMapping("/vendorView")
+	public String vendorView(Model model) {
+		model.addAttribute("vendor", new Vendor());
+		return "vendorForm";
+	}
+	
+	
+	@PostMapping("/saveVendor")
+	public String saveVendor(@ModelAttribute("vendor") Vendor vendor, RedirectAttributes redirect) {
+		System.out.println("save vendor controller method invoked");
+		furniService.saveVendor(vendor);
+		return "redirect:index";
+	}
+	
+	
 
 	@GetMapping("/services")
 	public String servicesView() {
