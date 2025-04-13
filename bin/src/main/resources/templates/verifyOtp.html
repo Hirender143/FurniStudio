@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #e6efec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .otp-container {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 350px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #3b5d50;
+        }
+
+        .otp-input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .otp-input-group input {
+            width: 45px;
+            height: 45px;
+            border: 1px solid #b0c6bf;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            color: #3b5d50;
+            transition: all 0.3s ease;
+        }
+
+        .otp-input-group input:focus {
+            border-color: #3b5d50;
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(59, 93, 80, 0.4);
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3b5d50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #324e44;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <h2>Verify OTP</h2>
+        <form th:action="@{/verifyOtp}" method="POST" id="otpForm">
+            <div class="otp-input-group">
+                <input type="text" maxlength="1" id="otp1" required oninput="moveToNext(this, 'otp2')">
+                <input type="text" maxlength="1" id="otp2" required oninput="moveToNext(this, 'otp3')">
+                <input type="text" maxlength="1" id="otp3" required oninput="moveToNext(this, 'otp4')">
+                <input type="text" maxlength="1" id="otp4" required>
+            </div>
+            <input type="hidden" id="completeOtp" name="otp">
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+
+    <script>
+        function moveToNext(current, nextFieldId) {
+            if (current.value.length === current.maxLength) {
+                document.getElementById(nextFieldId).focus();
+            }
+        }
+
+        document.getElementById('otpForm').addEventListener('submit', function() {
+            const otpFields = document.querySelectorAll('.otp-input-group input');
+            let otpValue = '';
+            otpFields.forEach(field => {
+                otpValue += field.value;
+            });
+            document.getElementById('completeOtp').value = otpValue;
+        });
+    </script>
+</body>
+</html>
